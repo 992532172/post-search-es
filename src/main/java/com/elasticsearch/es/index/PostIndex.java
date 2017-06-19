@@ -15,6 +15,8 @@ import org.springframework.data.elasticsearch.annotations.InnerField;
 import org.springframework.data.elasticsearch.annotations.MultiField;
 
 /**
+ * 回复索引，保存贴子回复数据到es
+ *
  * Created by liang.zhang on 2017/6/13.
  */
 @Document(indexName = "post_search", type = "post")
@@ -42,7 +44,7 @@ public class PostIndex implements Serializable {
 
     @MultiField(mainField = @Field(type = FieldType.String),
             otherFields = {
-                    // 拼音分词
+                    // 拼音分词,方便按拼音查询用户名
                     @InnerField(suffix = "pinyin", indexAnalyzer = "pinyin",type = FieldType.String, index = FieldIndex.analyzed),
                     // ik分词
                     @InnerField(suffix = "china", indexAnalyzer = "ik",type = FieldType.String, index = FieldIndex.analyzed)

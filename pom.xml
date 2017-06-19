@@ -202,6 +202,15 @@
         </repository>
     </repositories> -->
 
+    <profiles>
+        <profile>
+            <id>preprod</id>
+            <properties>
+                <package.target>preprod</package.target>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -226,7 +235,7 @@
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>config/${package.target}</directory>
+                                    <directory>conf/${package.target}</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>

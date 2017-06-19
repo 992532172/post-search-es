@@ -5,10 +5,8 @@ import com.elasticsearch.api.rq.QueryPostRq;
 import com.elasticsearch.api.rs.QueryPostRs;
 import com.elasticsearch.es.index.PostIndex;
 import com.elasticsearch.util.StringUtil;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
@@ -17,7 +15,6 @@ import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
-import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
@@ -74,7 +71,7 @@ public class PostSearchService implements PostSearchApi {
             searchBuilder.should(QueryBuilders.prefixQuery("postText", rqReg));
             searchBuilder.should(QueryBuilders.prefixQuery("userName.china", rqReg));
             searchBuilder.should(QueryBuilders.prefixQuery("userName.pinyin", rqReg));
-//            searchBuilder.should(QueryBuilders.prefixQuery("topicTitle", rqReg));
+            searchBuilder.should(QueryBuilders.prefixQuery("topicTitle", rqReg));
             searchBuilder.should(QueryBuilders.prefixQuery("topciDesc", rqReg));
             boolQueryBuilder.must(searchBuilder);
         }
